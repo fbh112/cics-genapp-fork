@@ -1,0 +1,37 @@
+name: cics-genapp
+description: Property groups and analysis profile for CICS GenApp
+version: 1.0.0
+
+propertyGroups:
+  # ── COBOL ────────────────────────────────────────────────────────────────
+  # syslib : base/src
+  - name: cobol-local
+    language: cobol
+    libraries:
+      - name: syslib
+        type: local
+        locations:
+          - "base/src"
+
+  # ── JCL ──────────────────────────────────────────────────────────────────
+  # syslib : base/cntl
+  - name: jcl-local
+    language: jcl
+    libraries:
+      - name: syslib
+        type: local
+        locations:
+          - "base/cntl"
+
+profiles:
+  - name: my-analysis
+    type: analysis
+    settings:
+      containsCics: true
+      analysisScope:
+        - name: cobol-scope
+          locations:
+            - "base/src"
+        - name: jcl-scope
+          locations:
+            - "base/cntl"
